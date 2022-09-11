@@ -1,0 +1,19 @@
+Question:
+Create 2 classes:
+1. Simple Calculator: Takes 2 number input using utility operator and performs
++,-,/,*. Display result using a function.
+
+2. Scientific Calculator: Takes 2 number input using utility operator and performs
+aby 4 Scientific operations. Display result using a function.
+
+3. Create another class HybridCalculator derived from Class 1 and 2
+
+Answer the following questions.
+
+Q1. What type of Inheritance are you using?
+Q2. Which mode of Inheritance are you using?
+Q3. Create an object of HybridCalculator and display results of simple
+    and scientific calculator.
+Q4. How is code reusability implemented?
+
+
