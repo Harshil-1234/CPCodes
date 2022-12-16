@@ -73,12 +73,41 @@ void levelOrderTraversal(node* root){
         }
     }
 }
+
+//Reverse Level Order Traversal
+void RevlevelOrderTraversal(node* root){
+    stack<node*>s;
+    queue<node*>q;
+    q.push(root);
+
+    while(!q.empty()){
+        node* temp = q.front();
+        q.pop();
+        s.push(temp);
+        
+        if(temp->right){
+            q.push(temp->right);
+        }
+
+        if(temp->left){
+            q.push(temp->left);
+        }
+
+    }
+    while (s.empty() == false){
+        node* temp = s.top();
+        cout << temp->data << " ";
+        s.pop();
+    }
+}
+
 // ***** INORDER TRAVERSAL ******
 /*
 LNR: Move to left side unless find a NULL
      if came back to same node print it
      then move to right of that node unless find a NULL
 */
+//Recursive Method
 void inorder(node* root){
     // base case
     if(root == NULL){
@@ -93,12 +122,68 @@ void inorder(node* root){
     // cout<<root->data<<" ";
 }
 
+//Iterative Method
+void inorderIt(node*root){
+    stack<node*>s;
+    node* temp = root;
+    while(temp!=NULL || !s.empty()){
+        while(temp!=NULL){
+            s.push(temp);
+            temp = temp->left;
+
+        }
+
+        temp = s.top();
+        s.pop();
+
+        cout<<temp->data<<" ";
+
+        temp = temp->right;
+    }
+}
+
+//Morris method
+void MorrisTraversalInorder(node* root){
+    if(root == NULL)
+        return;
+    
+    node* current, *predecessor;
+
+    current = root;
+
+    while(current!=NULL){
+        if(current->left == NULL){
+            cout<<current->data<<" ";
+            current = current->right;
+        }
+
+        else{
+            predecessor = current->left;
+            while(predecessor->right && predecessor->right!=current){
+                predecessor = predecessor->right;
+            }
+
+            if(predecessor->right == NULL){
+                predecessor->right = current;
+                current = current->left;
+            }
+            else{
+                predecessor->right = NULL;
+                cout<<current->data<<" ";
+                current = current->right;
+            }
+        }
+    }
+    cout<<endl;
+}
+
 //****** PREORDER TRAVERSAL ********
 /*
 NLR: print the node
      Move to left side unless find a NULL
      then move to right of that node unless find a NULL
 */
+//Recursive Method
 void preorder(node* root){
     // base case
     if(root == NULL){
@@ -112,13 +197,34 @@ void preorder(node* root){
     preorder(root->right);
     // cout<<root->data<<" ";
 }
+//Iterative Method
+void preorderIt(node*root){
+    if(root == NULL)
+        return;
 
+    stack<node*>s;
+    s.push(root);
+
+    while(!s.empty()){
+        node* temp = s.top();
+        cout<<temp->data<<" ";
+        s.pop();
+
+        if(temp->right)
+            s.push(temp->right);
+
+        if(temp->left)
+            s.push(temp->left);
+
+    }
+}
 //****** POSTORDER TRAVERSAL ********
 /*
 LRN: Move to left side unless find a NULL
      then move to right of that node unless find a NULL
      print the node on coming back on it
 */
+//Recursive Method
 void postorder(node* root){
     // base case
     if(root == NULL){
@@ -131,6 +237,12 @@ void postorder(node* root){
     //moving to right side
     postorder(root->right);
     cout<<root->data<<" ";
+}
+//Iterative Method
+void postorderIt(node*root){
+    if(root == NULL){
+        return;
+    }
 }
 
 //***** BUILDING TREE FROM LEVEL ORDER *******
@@ -181,16 +293,27 @@ int main(){
     cout<<endl<<"Printing the Level Order Traversal"<<endl;
     levelOrderTraversal(root);
 
+    cout<<endl<<"Printing the Reverse Level Order Traversal"<<endl;
+    RevlevelOrderTraversal(root);
+
     // inorder traversal output
     // cout<<endl<<"Printing the Inorder Order Traversal"<<endl;
     // inorder(root);
+    // cout<<endl<<"Printing the Inorder Order Traversal Iterative Method"<<endl;
+    // inorderIt(root);
+    // cout<<endl<<"Printing the Inorder Order Traversal Morris Method"<<endl;
+    // MorrisTraversalInorder(root);
 
     // preorder traversal output
     // cout<<endl<<"Printing the Pre - Order Traversal"<<endl;
     // preorder(root);
+    // cout<<endl<<"Printing the Pre - Order Traversal Iterative Method"<<endl;
+    // preorderIt(root);
 
     // postorder traversal output
     // cout<<endl<<"Printing the Post - Order Traversal"<<endl;
     // postorder(root);
+    // cout<<endl<<"Printing the Post - Order Traversal Iterative Method"<<endl;
+    // postorderIt(root);
     // return 0;
 }

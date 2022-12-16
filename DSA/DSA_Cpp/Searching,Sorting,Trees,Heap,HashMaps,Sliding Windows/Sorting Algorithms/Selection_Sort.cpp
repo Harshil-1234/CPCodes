@@ -16,12 +16,17 @@ void SelectionSort(int arr[], int size){
                 minIndex = j;
             }
         }
-        swap(arr[minIndex], arr[i]);
+        // swap(arr[minIndex], arr[i]);
+        if(minIndex !=i){
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
     }
 }
 
 int main(){
-    int arr[] = {22,44,33,55,11};
+    int arr[] = {10,22,44,33,55,11};
     int size = sizeof(arr)/sizeof(int);
     cout<<"Before Sorting array is "<<endl;
     print(arr,size);

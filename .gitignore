@@ -1,2 +1,9 @@
 *.exe
 BinaryTree_Creation
+.DS_Store
+MergeSort
+QuickSort
+Selection_Sort
+BinarySearchTree
+Bubble_Sort
+Nesting_vect

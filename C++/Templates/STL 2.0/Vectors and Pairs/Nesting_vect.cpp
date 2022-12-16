@@ -1,19 +1,23 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void printVec(vector<int>&v){
+void printVec(vector<pair<int,int> >&v){
     cout<<"SIZE: "<<v.size()<<endl;
     for (int i = 0; i < v.size(); i++)
     {
-        cout<<v[i]<<" ";
+        cout<<v[i].first<<" "<<v[i].second<<endl;
     }
-    cout<<endl;
 } 
 
 int main(){
-    //********* PAIRS of VECTORS ************
-    // vector<pair<int,int>> v; //= {{1,2},{3,4},{4,5}};
-    // printVec(v);
+    // ********* PAIRS of VECTORS ************
+    vector< pair<int,int> > v;//= { {1,2},{3,4},{4,5} };
+    for(int i=0;i<5;i++){
+        int num1,num2;
+        cin>>num1>>num2;
+        v.push_back(make_pair(num1,num2));
+    }
+    printVec(v);
     // int n;
     // cin>>n;
     // for (int i = 0; i < n; i++)
@@ -46,26 +50,26 @@ int main(){
     // }
 
     // ********** VECTOR of VECTOR
-    int N; //how many nested vectors we want.
-    cin>>N;
-    vector<vector<int>> v; //we will get N vectors;
+    // int N; //how many nested vectors we want.
+    // cin>>N;
+    // vector<vector<int> > v; //we will get N vectors;
 
-    for(int i=0;i<N;i++){
-        //taking size of each vector;
-        int size;cin>>size;
-        vector<int> temp;
-        for(int j=0;j<size;j++){
-            int num;cin>>num;
-            // v[i].push_back(num); //This statement isn't allowed as v[i] doesnot exist rn.
-            temp.push_back(num);
-        }
-        v.push_back(temp);
-    }
+    // for(int i=0;i<N;i++){
+    //     //taking size of each vector;
+    //     int size;cin>>size;
+    //     vector<int> temp;
+    //     for(int j=0;j<size;j++){
+    //         int num;cin>>num;
+    //         // v[i].push_back(num); //This statement isn't allowed as v[i] doesnot exist rn.
+    //         temp.push_back(num);
+    //     }
+    //     v.push_back(temp);
+    // }
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        printVec(v[i]);
-    }
+    // for (int i = 0; i < v.size(); i++)
+    // {
+    //     printVec(v[i]);
+    // }
     
     
     return 0;
